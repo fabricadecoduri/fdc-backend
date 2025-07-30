@@ -1,5 +1,6 @@
 package com.fdc.server.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,8 +14,10 @@ public class PlatformInfo {
     private String donateMessage;
     private String donateTitle;
     @OneToMany(mappedBy = "platformInfo", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<SEOHashTag> seoHashTags;
     @OneToMany(mappedBy = "platformInfo", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<News> news;
     private String tiktokLink;
     private String instagramLink;
@@ -24,6 +27,7 @@ public class PlatformInfo {
     private String email;
 
     @OneToMany(mappedBy = "platformInfo", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Sponsor> sponsors;
 
     public PlatformInfo() {

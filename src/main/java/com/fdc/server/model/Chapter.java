@@ -1,5 +1,7 @@
 package com.fdc.server.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,9 +15,11 @@ public class Chapter {
     private int orderNumber;
 
     @ManyToOne
+    @JsonBackReference
     private Topic topic;
 
-    @OneToMany(mappedBy = "chapter")
+    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Lesson> lessons;
 
     public Chapter() {

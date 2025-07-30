@@ -1,5 +1,6 @@
 package com.fdc.server.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +12,7 @@ public class SEOHashTag {
     private String redirectLink;
     @ManyToOne
     @JoinColumn(name = "platform_info_id")
+    @JsonBackReference
     private PlatformInfo platformInfo;
 
     public SEOHashTag() {
