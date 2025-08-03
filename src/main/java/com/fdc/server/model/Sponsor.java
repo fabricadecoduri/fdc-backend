@@ -1,5 +1,6 @@
 package com.fdc.server.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Sponsor {
 
     @ManyToOne
     @JoinColumn(name = "platform_info_id")
+    @JsonBackReference
     private PlatformInfo platformInfo;
 
     public Sponsor() {

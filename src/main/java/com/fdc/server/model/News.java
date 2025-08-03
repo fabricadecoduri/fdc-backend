@@ -1,5 +1,6 @@
 package com.fdc.server.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public class News {
     private LocalDateTime createdAt;
     @ManyToOne
     @JoinColumn(name = "platform_info_id")
+    @JsonBackReference
     private PlatformInfo platformInfo;
 
     @PrePersist
