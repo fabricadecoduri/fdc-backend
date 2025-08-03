@@ -2,6 +2,7 @@ package com.fdc.server.controller;
 
 import com.fdc.server.model.Lesson;
 import com.fdc.server.repository.LessonRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +17,13 @@ public class LessonController {
     @Autowired
     private LessonRepository lessonRepository;
 
+    @Operation(summary = "List all Lessons")
     @GetMapping
     public List<Lesson> getAllLessons() {
         return lessonRepository.findAll();
     }
 
+    @Operation(summary = "List Chapter by id")
     @GetMapping("/{id}")
     public ResponseEntity<Lesson> getLessonById(@PathVariable Long id) {
         Optional<Lesson> lesson = lessonRepository.findById(id);
@@ -28,11 +31,14 @@ public class LessonController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
+    @Operation(summary = "Create Lesson")
     @PostMapping
     public Lesson createLesson(@RequestBody Lesson lesson) {
         return lessonRepository.save(lesson);
     }
 
+    @Operation(summary = "Update Lesson by id")
     @PutMapping("/{id}")
     public ResponseEntity<Lesson> updateLesson(@PathVariable Long id, @RequestBody Lesson updatedLesson) {
         return lessonRepository.findById(id)
@@ -46,6 +52,7 @@ public class LessonController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Delete Lesson by id")
     @DeleteMapping("/{id}")
     public void deleteLesson(@PathVariable Long id) {
         lessonRepository.deleteById(id);
